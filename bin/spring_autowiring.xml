@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+     http://www.springframework.org/schema/beans/spring-beans.xsd"
+     default-autowire="constructor">
+     
+    <!-- default-autowire="byName" 
+    default-autowire="byType" 不需要id
+    default-autowire="constructor" 根据bean的类型class匹配
+    配置autowire后，不需要在bean中配置property -->
+<bean id="autowiringDao" class="com.superxu.autowiring.AutowiringDao"/>
+<bean id="autowiringService" class="com.superxu.autowiring.AutowiringService"/>
+	
+</beans>

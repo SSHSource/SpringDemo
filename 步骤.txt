@@ -1,10 +1,64 @@
 http://repo.spring.io/release/org/springframework/spring/
 
-spring��J2EEӦ�ó����ܣ�����������IoC��AOP��������ܣ���Ҫ�����javaBean���������ڽ��й��������������������Ե���ʹ�ã�Ҳ���Ժ�Struts��ܣ�ibatis��ܵ����ʹ�á�
+spring是J2EE应用程序框架，是轻量级的IoC和AOP的容器框架，主要是针对javaBean的生命周期进行管理的轻量级容器，可以单独使用，也可以和Struts框架，ibatis框架等组合使用。
 
-1��IoC(Inversion of Control)���Ʒ�ת�����󴴽����εķ�ת����spring��BeanFacotory��IoC�����ĺ��Ľӿڣ�����ʵ��������λ������Ӧ�ó����еĶ��󼰽�����Щ������������XmlBeanFacotoryʵ��BeanFactory�ӿڣ�ͨ����ȡxml�����ļ����ݣ����Ӧ�ö��󼰶�����������ϵ��
-spring��������ע�뷽ʽ��һ����setע�룬һ���ǽӿ�ע�룬��һ���ǹ��췽��ע�롣
+1）IoC(Inversion of Control)控制反转，对象创建责任的反转，在spring中BeanFacotory是IoC容器的核心接口，负责实例化，定位，配置应用程序中的对象及建立这些对象间的依赖。XmlBeanFacotory实现BeanFactory接口，通过获取xml配置文件数据，组成应用对象及对象间的依赖关系。
+spring中有三种注入方式，一种是set注入，一种是接口注入，另一种是构造方法注入。
  
-    2��AOP����������
-   aop��������ı�̣�����ͼ��ʾ��ҵ��1��ҵ��2����Ҫһ����ͬ�Ĳ�����������ÿ��ҵ���ж�����ͬ���Ĵ��룬����дһ����룬������ҵ��ͬʹ����δ��롣
- spring�����������ɵ�ʵ�������ַ�ʽ��һ���Ƕ�̬������һ����CGLIB����̬��������Ҫ�ṩ�ӿڣ���CGLIBʵ�����м̳�
+    2）AOP面向切面编程
+   aop就是纵向的编程，如下图所示，业务1和业务2都需要一个共同的操作，与其往每个业务中都添加同样的代码，不如写一遍代码，让两个业务共同使用这段代码。
+ spring中面向切面变成的实现有两种方式，一种是动态代理，一种是CGLIB，动态代理必须要提供接口，而CGLIB实现是有继承
+ 
+ 
+--2016.09.23
+掌握方法；
+深入理解；
+不断实践；
+反复总结；
+再次深入理解与实践。
+
+Spring是一个开源框架，是一个轻量级的控制反转（IOC）和面向切面（AOP）的容器框架。
+	-从大小与开销两方面而言Spring都是轻量的
+	-通过控制反转（Ioc）的技术达到轻耦合的目的
+	-提供了面向切面编程的丰富支持，允许通过分离应用的业务逻辑与系统级服务进行内聚行的开发。
+	-包含并管理应用对象的配置和生命周期，这个意义上是一个容器。
+	-将简单的组件配置、组合成为复杂的应用，这个意义上是框架。
+框架就是制定一套规范或者规则(思想)，大家(progromer)在该规范或者规则下工作。或者说就是使用
+别人搭好的舞台，你来做表演。
+
+IOC：控制反转，控制权转移，应用程序本身不负责依赖对象的创建和维护，而是由外部容器负责创建和维护。
+DI:依赖注入  是其一种实现方式。
+目的：创建对象并且组装对象之间的关系。
+
+Spring注入：指在启动Spring容器加载bean配置的时候，完成对变量的赋值行为。
+常用的两个种注入方式：设值注入和构造注入
+
+Bean的配置项
+id class scope constructor_arguments properties autowiring_mode lazy_initialization_mode
+bean的作用域
+singleton：单例，指一个bean容器中只存在一份  “ClassPathXmlApplicationContext”
+prototype：每次请求(每次使用)创建新的实例
+request：每次http请求创建一个实例且仅在当前request内有效
+session：每次http请求创建，当前session内有效
+
+bean的生命周期
+定义：配置ID class
+初始化：ioc容器
+使用：
+销毁：bean容器销毁
+
+Spring中提供了 一些以Aware结尾的接口，实现了Aware接口的bean在被初始化之后，可以获取相应资源，
+通过Aware接口，可以对Spring相应资源进行操作。（慎用）
+ApplicationContextAware  BeanNameAware
+
+Baen的自动装配(Autowiring)
+byname:根据属性名自动装配   id
+bytype：根据属性类型相同的bean，如果多个 异常 class
+Construction：构造器参数类型
+
+
+Resources 针对资源文件的统一接口
+ctx.getResource("some/resource/path/mytemplate.txt");
+ctx.getResource("classpath:some/resource/path/mytemplate.txt");
+ctx.getResource("file:some/resource/path/mytemplate.txt");
+ctx.getResource("http:");

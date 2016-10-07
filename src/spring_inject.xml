@@ -1,0 +1,25 @@
+ClassPathXmlApplicationContext<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+     http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="myBean" class="com.superxu.StudentService">
+		<property name="studentname">
+			<value>superxu</value>
+		</property>
+	</bean>
+	
+	<!--Spring注入：指在启动Spring容器加载bean配置的时候，完成对变量的赋值行为。
+			常用的两个种注入方式：设值注入和构造注入  -->
+
+	<!-- <bean id="injectService" class="com.superxu.service.InjectionServicImpl">
+	    <property name="injectionDao" ref="injectionDao"></property>
+	</bean> -->
+	
+	<bean id="injectService" class="com.superxu.service.InjectionServicImpl">
+	    <constructor-arg name="injectionDao" ref="injectionDao"></constructor-arg>
+	</bean>
+	<bean id="injectionDao" class="com.superxu.dao.InjectionDaoImpl" />
+
+</beans>
